@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: david-fe <david-fe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 16:36:36 by david-fe          #+#    #+#             */
-/*   Updated: 2024/10/30 16:38:01 by david-fe         ###   ########.fr       */
+/*   Created: 2024/12/23 15:54:10 by david-fe          #+#    #+#             */
+/*   Updated: 2024/12/23 15:54:46 by david-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-unsigned int	ft_putstr_fd(char *str, int fd)
+int	ft_parse_args(int argc, char **argv)
 {
-	size_t	i;
+	int	i;
+	int	j;
 
 	i = 0;
-	if (!str)
-		return (ft_putstr_fd("(null)", fd));
-	while (str[i])
+	j = -1;
+	while(++i < argc && argv[i])
 	{
-		write(fd, &str[i], 1);
-		i++;
+		ft_printf("check 1: argc %d, argv[%d]\n", argc, i);
+		if(ft_isdigit(argv[i][++j]) == 1 && argv[i][j])		
+		{
+			ft_printf("check 2\n");
+			ft_printf("%d\n", ft_atoi(argv[i]));
+		}
+		else
+			return(0);
 	}
-	return (i);
+	return(1);
 }
+

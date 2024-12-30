@@ -10,37 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 #include <limits.h>
 
-size_t	ft_formatchr(va_list arg_ptr, char format)
+size_t	ft_formatchr(va_list arg_ptr, char format, int fd)
 {
 	size_t	n;
 
+	fd = 1;
 	n = 0;
 	if (format == 'c')
-		n = ft_putchar(va_arg(arg_ptr, int));
+		n = ft_putchar_fd(va_arg(arg_ptr, int), fd);
 	else if (format == 's')
-		n = ft_putstr(va_arg(arg_ptr, char *));
+		n = ft_putstr_fd(va_arg(arg_ptr, char *), fd);
 	else if (format == 'p')
 		n = ft_putptr(va_arg(arg_ptr, void *));
 	else if (format == 'd' || format == 'i')
-		n = ft_putnbr(va_arg(arg_ptr, int));
+		n = ft_putnbr_fd(va_arg(arg_ptr, int), fd);
 	else if (format == 'u')
 		n = ft_putunbr(va_arg(arg_ptr, unsigned int));
 	else if (format == 'x' || format == 'X')
 		n = ft_puthex(va_arg(arg_ptr, unsigned int), format);
 	else if (format == '%')
-		n = ft_putchar('%');
+		n = ft_putchar_fd('%', fd);
 	return (n);
 }
 
-int	ft_printf(const char *arg_str, ...)
+int	ft_printf(const char *arg_str, ...) //ALTER if FD is needed
 {
 	va_list	arg_ptr;
 	size_t	i;
 	size_t	count;
+	int		fd;
 
+	fd = 1;
 	va_start(arg_ptr, arg_str);
 	count = 0;
 	i = 0;
@@ -48,12 +51,12 @@ int	ft_printf(const char *arg_str, ...)
 	{
 		if (arg_str[i] == '%')
 		{
-			count += ft_formatchr(arg_ptr, arg_str[i + 1]);
+			count += ft_formatchr(arg_ptr, arg_str[i + 1], fd);
 			i += 2;
 		}
 		else
 		{
-			ft_putchar(arg_str[i]);
+			ft_putchar_fd(arg_str[i], fd);
 			count++;
 			i += 1;
 		}

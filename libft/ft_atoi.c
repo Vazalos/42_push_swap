@@ -20,6 +20,14 @@ int	ft_isspace(int c)
 		return (0);
 }
 
+/**
+ * count_set_bits - Counts the number of set bits in a number.
+ *
+ * @i : The count.
+ *
+ * @return: The number of set bits in n.
+ */
+
 int	ft_atoi(const char *str)
 {
 	int	i;
@@ -44,10 +52,3 @@ int	ft_atoi(const char *str)
 	}
 	return (sign * num);
 }
-/*
-int	main(void)
-{
-	char	str1[] = " ---+--+1234ab567";
-
-	printf("%d", ft_atoi(str1));
-}*/

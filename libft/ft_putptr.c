@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 unsigned int	ft_ptrlen(unsigned long to_count)
 {
@@ -46,9 +46,11 @@ unsigned int	ft_putptr(void *to_ptr)
 {
 	char			*hex_str;
 	unsigned int	i;
+	int				fd;
 
+	fd = 1;
 	if (!to_ptr)
-		return (ft_putstr("(nil)"));
+		return (ft_putstr_fd("(nil)", fd));
 	i = ft_ptrlen((unsigned long)to_ptr);
 	hex_str = ft_calloc((i + 1), sizeof(char *));
 	if (!hex_str)
@@ -56,8 +58,8 @@ unsigned int	ft_putptr(void *to_ptr)
 	i--;
 	hex_str = ft_fillptr((unsigned long)to_ptr, hex_str, i);
 	i = (unsigned int)ft_strlen(hex_str);
-	i += ft_putstr("0x");
-	ft_putstr(hex_str);
+	i += ft_putstr_fd("0x", fd);
+	ft_putstr_fd(hex_str, fd);
 	free (hex_str);
 	hex_str = NULL;
 	return (i);

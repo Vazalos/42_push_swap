@@ -12,8 +12,17 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-//# include <.h>
+# include <stdio.h>
+# include "libft/libft.h"
 
-//functions
+typedef struct s_stack
+{
+	int				number;
+	struct s_stack	*next;
+}	t_stack;
+
+int		main(int argc, char **argv);
+int		ft_parse_args(int argc, char **argv);
+void	push_swap(t_stack a);
 
 #endif

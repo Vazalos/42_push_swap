@@ -15,6 +15,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -22,7 +23,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-// part1
+// LIBFT mandatory
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isalnum(int c);
@@ -46,7 +47,7 @@ char			*ft_strnstr(const char *big, const char *little, size_t len);
 int				ft_atoi(const char *str);
 void			*ft_calloc(size_t nmemb, size_t size);
 char			*ft_strdup(const char *src);
-// part2
+
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s1, char const *set);
@@ -54,11 +55,12 @@ char			**ft_split(char const *s, char c);
 char			*ft_itoa(int n);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void			ft_striteri(char *s, void (*f)(unsigned int, char*));
-void			ft_putchar_fd(char c, int fd);
-void			ft_putstr_fd(char *str, int fd);
+unsigned int	ft_putchar_fd(char c, int fd);
+unsigned int	ft_putstr_fd(char *str, int fd);
 void			ft_putendl_fd(char *str, int fd);
-void			ft_putnbr_fd(int nbr, int fd);
-// bonus
+unsigned int	ft_putnbr_fd(int nbr, int fd);
+
+// LIBFT bonus
 t_list			*ft_lstnew(void *content);
 void			ft_lstadd_front(t_list **lst, t_list *new_node);
 int				ft_lstsize(t_list *lst);
@@ -69,4 +71,16 @@ void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst,
 					void *(*f)(void *), void (*del)(void *));
+
+// PRINTF
+int				ft_printf(const char *arg_str, ...);
+size_t			ft_strlen(const char *str);
+char			*ft_strchr(const char *str, int c);
+unsigned int	ft_putchar(char c);
+unsigned int	ft_putnbr(int nbr);
+unsigned int	ft_putunbr(unsigned int nbr);
+unsigned int	ft_putstr(char *str);
+unsigned int	ft_puthex(unsigned int to_hex, char xcase);
+unsigned int	ft_putptr(void *to_ptr);
+void			*ft_calloc(size_t nmemb, size_t size);
 #endif

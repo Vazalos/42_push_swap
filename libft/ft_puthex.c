@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 unsigned int	ft_hexcount(unsigned int to_count)
 {
@@ -49,7 +49,9 @@ unsigned int	ft_puthex(unsigned int to_hex, char format)
 {
 	char			*hex_str;
 	unsigned int	i;
+	int				fd;
 
+	fd = 1;
 	if (to_hex == 0)
 	{
 		write(1, "0", 1);
@@ -62,7 +64,7 @@ unsigned int	ft_puthex(unsigned int to_hex, char format)
 	i--;
 	hex_str = ft_fillhex(to_hex, hex_str, format, i);
 	i = (unsigned int)ft_strlen(hex_str);
-	ft_putstr(hex_str);
+	ft_putstr_fd(hex_str, fd);
 	free (hex_str);
 	hex_str = NULL;
 	return (i);

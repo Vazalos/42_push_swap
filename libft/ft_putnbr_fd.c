@@ -12,18 +12,39 @@
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int nbr, int fd)
+unsigned int	ft_digitcnt(int to_count)
 {
-	if (nbr == -2147483648)
+	unsigned int	i;
+
+	i = 0;
+	if (to_count == 0)
+		return (1);
+	if (to_count == -2147483648)
+		return (11);
+	if (to_count < 0)
+		to_count = -to_count;
+	while (to_count > 0)
 	{
-		write(fd, "-2147483648", 11);
+		to_count = to_count / 10;
+		i++;
 	}
+	return (i);
+}
+
+unsigned int	ft_putnbr_fd(int nbr, int fd)
+{
+	unsigned int	count;
+
+	count = ft_digitcnt(nbr);
+	if (nbr == -2147483648)
+		write(1, "-2147483648", 11);
 	else
 	{
 		if (nbr < 0)
 		{
 			write(fd, "-", 1);
 			nbr = -nbr;
+			count++;
 		}
 		if (nbr > 9)
 		{
@@ -36,6 +57,7 @@ void	ft_putnbr_fd(int nbr, int fd)
 			write(fd, &nbr, 1);
 		}
 	}
+	return (count);
 }
 /*
 int	main(void)
