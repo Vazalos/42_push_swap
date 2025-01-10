@@ -83,4 +83,8 @@ unsigned int	ft_putstr(char *str);
 unsigned int	ft_puthex(unsigned int to_hex, char xcase);
 unsigned int	ft_putptr(void *to_ptr);
 void			*ft_calloc(size_t nmemb, size_t size);
+
+//MORE
+long			ft_atol(const char *str);
+
 #endif

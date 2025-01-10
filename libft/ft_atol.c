@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david-fe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: david-fe <david-fe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 15:47:46 by david-fe          #+#    #+#             */
-/*   Updated: 2024/08/14 15:06:51 by david-fe         ###   ########.fr       */
+/*   Created: 2025/01/08 12:04:36 by david-fe          #+#    #+#             */
+/*   Updated: 2025/01/08 12:04:39 by david-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-int	ft_isspace(int c)
+int	ft_isspace_alt(int c)
 {
 	if (c == 32 || (c >= 9 && c <= 13))
 		return (1);
@@ -20,16 +20,16 @@ int	ft_isspace(int c)
 		return (0);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
-	int	i;
-	int	sign;
-	int	num;
+	int		i;
+	int		sign;
+	long	num;
 
 	i = 0;
 	sign = 1;
 	num = 0;
-	while (ft_isspace(str[i]) != 0)
+	while (ft_isspace_alt(str[i]) != 0)
 		i++;
 	if (str[i] == 43 || str[i] == 45)
 	{

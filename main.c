@@ -15,7 +15,7 @@
 int	main (int argc, char **argv)
 {
 	if(argc <= 1)
-		ft_printf("Error\n");
+		ft_printf("Error\n"); //only thing that can be printed
 	else
 	{
 		if(ft_parse_args(argc, argv) == 1)
