@@ -1,31 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_ops.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: david-fe <david-fe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/20 11:30:41 by david-fe          #+#    #+#             */
-/*   Updated: 2024/12/20 11:31:29 by david-fe         ###   ########.fr       */
+/*   Created: 2025/01/20 11:11:22 by david-fe          #+#    #+#             */
+/*   Updated: 2025/01/20 11:14:14 by david-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include <stdio.h>
-# include "libft/libft.h"
 
-typedef struct s_stack
-{
-	int				number;
-	struct s_stack	*next;
-	struct s_stack	*prev;
-}	t_stack;
-
-int		main(int argc, char **argv);
-int		ft_parse_args(int argc, char **argv);
-void	push_swap(t_stack a);
-void	ft_stack_add_back(t_stack **lst, t_stack *new_num);
-t_stack	*ft_stack_new(int number);
-
-#endif
