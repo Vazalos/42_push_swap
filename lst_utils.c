@@ -16,28 +16,34 @@ t_stack	*ft_stack_new(int number)
 {
 	t_stack	*new_node;
 
-	new_node = malloc(sizeof(t_list));
+	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
 		return (NULL);
-	new_node->number = number;
+	new_node->value = number;
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	return (new_node);
 }
 
-void	ft_stack_add_back(t_stack **stack, t_stack *new_num)
+void	ft_stack_add_back(t_stack **stack, t_stack *new_node)
 {
 	t_stack	*temp;
 
 	if (!*stack)
 	{
-		*stack = new_num;
+		*stack = new_node;
 		return ;
 	}
 	temp = *stack;
 	while (temp && temp->next)
 		temp = temp->next;
-	temp->next = new_num;
+	temp->next = new_node;
+	new_node->prev = temp;
 }
 
-
+void	ft_stack_add_front(t_stack **stack, t_stack *new_node)
+{
+	new_node->next = *stack;
+	new_node->prev = NULL;
+	*stack = new_node;
+}

@@ -38,11 +38,7 @@ int	ft_digitchr(int argc, char **argv) //still need to refine situations like ar
 			(j == -1 && (argv[i][j] == '+' || argv[i][j] == '-')))	
 		{
 			if(j > 10 || ft_atol(argv[i]) > 2147483647 || ft_atol(argv[i]) < -2147483648)
-			{
 				return(0);
-			}
-			else
-				ft_printf("%d\n", ft_atoi(argv[i]));
 		}
 		else
 		{

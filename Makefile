@@ -19,7 +19,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap.a
 OBJ = $(SRC:.c=.o)
 
-SRC = main.c ft_parse_args.c
+SRC = main.c ft_parse_args.c lst_utils.c swaps.c pushes.c
 
 LIBFT = ${LIBFT_PATH}/libft.a
 LIBFT_PATH = libft

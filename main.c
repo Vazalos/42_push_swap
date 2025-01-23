@@ -13,53 +13,63 @@
 #include "libft/libft.h"
 #include "push_swap.h"
 
-void	ft_print_list(t_stack *lst)
+void	ft_print_list(t_stack **lst, char name)
 {
 	t_stack	*temp;
 
-	temp = lst;
+	temp = *lst;
+	ft_printf("%c ", name);
 	while (temp && temp->next)
 	{
-		ft_printf("%d", temp->number);
+		ft_printf("%d ", temp->value);
 		temp = temp->next;
 	}
 	if (temp)
-		ft_printf("%d", temp->number);
+		ft_printf("%d\n", temp->value);
 }
 
-t_stack **ft_makelist(char **nlist, int nsize)
+t_stack **ft_makelist(char **nlist, int nsize, t_stack **stack_a)
 {
 	int		i;
-	t_stack **new_stack;// has to be **?
+	t_stack *current;
 
 	i = 1;
-	new_stack = NULL;
-	*new_stack = ft_stack_new(ft_atoi(nlist[i++]));
+	current = NULL;
 	while(i < nsize && nlist[i])
 	{
-		ft_printf("%s", nlist[i]);
-		ft_stack_add_back(new_stack, ft_stack_new(ft_atoi(nlist[i++])));
+		current = ft_stack_new(ft_atoi(nlist[i++]));
+		ft_stack_add_back(stack_a, current);
 	}
-
-	return(new_stack);
+	return(stack_a);
 }
 
 int	main (int argc, char **argv)
 {
 	t_stack **stack_a;
+	t_stack **stack_b;
+
+	stack_a = malloc(sizeof(t_stack));
+	stack_b = malloc(sizeof(t_stack));
 
 	if(argc <= 1)
-		ft_printf("Error\n"); //only thing that can be printed
+		ft_printf("Error\n"); //only error message that can be printed
 	else
 	{
 		if(ft_parse_args(argc, argv) == 1)
-		{
-			stack_a = ft_makelist(argv, argc);
-			return(ft_printf("valid args"));
-		}
+			stack_a = ft_makelist(argv, argc, stack_a);
 		else 
-			return(ft_printf("invalid args, try again!"));
+			ft_printf("Error\n"); //only error message that can be printed
 	}
+	ft_print_list(stack_a, 'a');
+	ft_print_list(stack_b, 'b');
+	printf("\n");
+	sa(stack_a);
+	ft_print_list(stack_a, 'a');
+	ft_print_list(stack_b, 'b');
+	printf("\n");
+	pb(stack_b, stack_a);
+	ft_print_list(stack_a, 'a');
+	ft_print_list(stack_b, 'b');
 }
 //I have to use my own printf
 
