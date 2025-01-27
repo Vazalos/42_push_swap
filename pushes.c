@@ -16,20 +16,23 @@ void	ft_push(t_stack **dest, t_stack **src) //pa is b to a
 {
 	t_stack *temp;
 
-	temp = (*src);
-	((*src)->next)->prev = NULL;
-	(*src) = (*src)->next;
-
-	if(!*dest)
+	if(*src) //added last, did no fix
 	{
-		*dest = temp;
-		temp->next = NULL;
-	}
-	else
-	{
-	(*dest)->prev = temp;
-	temp->next = (*dest);
-	(*dest) = temp;
+		temp = (*src);
+		((*src)->next)->prev = NULL;
+		(*src) = (*src)->next;
+	
+		if(!*dest)
+		{
+			*dest = temp;
+			temp->next = NULL;
+		}
+		else
+		{
+			(*dest)->prev = temp;
+			temp->next = (*dest);
+			(*dest) = temp;
+		}
 	}
 }
 

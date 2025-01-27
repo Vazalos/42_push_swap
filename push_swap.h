@@ -38,4 +38,10 @@ void	ss(t_stack **a, t_stack **b);
 void	pa(t_stack **a, t_stack **b);
 void	pb(t_stack **b, t_stack **a);
 
+void	ra(t_stack **stack_a);
+void	rb(t_stack **stack_b);
+void	rr(t_stack **stack_a, t_stack **stack_b);
+
+void	ft_print_list(t_stack **lst, char name);
+
 #endif

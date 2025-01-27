@@ -60,6 +60,7 @@ int	main (int argc, char **argv)
 		else 
 			ft_printf("Error\n"); //only error message that can be printed
 	}
+	/*
 	ft_print_list(stack_a, 'a');
 	ft_print_list(stack_b, 'b');
 	printf("\n");
@@ -70,6 +71,35 @@ int	main (int argc, char **argv)
 	pb(stack_b, stack_a);
 	ft_print_list(stack_a, 'a');
 	ft_print_list(stack_b, 'b');
+	printf("\n");
+	ra(stack_a);
+	ft_print_list(stack_a, 'a');
+	ft_print_list(stack_b, 'b');
+	printf("\n");
+	*/
+
+printf("\n");
+	pb(stack_b, stack_a);
+	ft_print_list(stack_a, 'a');
+	ft_print_list(stack_b, 'b');
+
+printf("\n");
+	ft_printf("check1\n");
+	pb(stack_b, stack_a);
+	ft_printf("check2\n");
+	ft_print_list(stack_a, 'a');
+	printf("check3\n");
+
+ft_print_list(stack_b, 'b');
+	ft_printf("check4\n");
+	pb(stack_b, stack_a);
+	ft_printf("check4\n");
+	/*
+printf("\n");
+	pb(stack_b, stack_a);
+	ft_print_list(stack_a, 'a');
+	ft_print_list(stack_b, 'b');*/
+
 }
 //I have to use my own printf
 
