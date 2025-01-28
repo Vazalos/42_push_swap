@@ -20,41 +20,43 @@ int	ft_arg_split(int argc, char **argv)
 
 	i = 0;
 	arglist = NULL;
-	if(ft_strchr(argv[1], 32) && argc == 2) //for one element only
+	if (ft_strchr(argv[1], 32) && argc == 2)
 		arglist = ft_split(argv[1], 32);
-	return(1);
+	return (1);
 }
 
-int	ft_digitchr(int argc, char **argv) //still need to refine situations like args "2 2" 2
+int	ft_digitchr(int argc, char **argv) // handle args like "2 2" 2
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = -1;
-	while(++i < argc && argv[i])
+	while (++i < argc && argv[i])
 	{
-		if((ft_isdigit(argv[i][++j]) == 1 && argv[i][j]) ||
-			(j == -1 && (argv[i][j] == '+' || argv[i][j] == '-')))	
+		if ((ft_isdigit(argv[i][++j]) == 1 && argv[i][j]) ||
+			(j == -1 && (argv[i][j] == '+' || argv[i][j] == '-')))
 		{
-			if(j > 10 || ft_atol(argv[i]) > 2147483647 || ft_atol(argv[i]) < -2147483648)
-				return(0);
+			if (j > 10 || ft_atol(argv[i]) > 2147483647
+				|| ft_atol(argv[i]) < -2147483648)
+				return (0);
 		}
 		else
 		{
-			return(0);
+			return (0);
 		}
 		j = -1;
 	}
-	return(1);
+	return (1);
 }
 
 int	ft_parse_args(int argc, char **argv)
 {
-	if(ft_arg_split(argc, argv) == 0)
-		return(0);
-	if(ft_digitchr(argc, argv) == 0)
-		return(0);
-	return(1);
+	if (argc <= 1)
+		return (0);
+	if (ft_arg_split(argc, argv) == 0)
+		return (0);
+	if (ft_digitchr(argc, argv) == 0)
+		return (0);
+	return (1);
 }
-

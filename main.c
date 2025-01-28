@@ -10,98 +10,67 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "push_swap.h"
 
-void	ft_print_list(t_stack **lst, char name)
-{
-	t_stack	*temp;
-
-	temp = *lst;
-	ft_printf("%c ", name);
-	while (temp && temp->next)
-	{
-		ft_printf("%d ", temp->value);
-		temp = temp->next;
-	}
-	if (temp)
-		ft_printf("%d\n", temp->value);
-}
-
-t_stack **ft_makelist(char **nlist, int nsize, t_stack **stack_a)
+t_stack	**ft_makelist(char **nlist, int nsize, t_stack **stack_a)
 {
 	int		i;
-	t_stack *current;
+	t_stack	*current;
 
 	i = 1;
 	current = NULL;
-	while(i < nsize && nlist[i])
+	while (i < nsize && nlist[i])
 	{
 		current = ft_stack_new(ft_atoi(nlist[i++]));
 		ft_stack_add_back(stack_a, current);
 	}
-	return(stack_a);
+	return (stack_a);
 }
 
-int	main (int argc, char **argv)
+void	ft_free_stack(t_stack **stack)
 {
-	t_stack **stack_a;
-	t_stack **stack_b;
+	t_stack	*temp;
+
+	temp = *stack;
+	if (*stack)
+	{
+		while (temp != NULL)
+		{
+			temp = (*stack)->next;
+			free(*stack);
+			*stack = temp;
+		}
+	}
+	free(stack);
+}
+
+int	main(int argc, char **argv)
+{
+	t_stack	**stack_a;
+	t_stack	**stack_b;
 
 	stack_a = malloc(sizeof(t_stack));
 	stack_b = malloc(sizeof(t_stack));
-
-	if(argc <= 1)
-		ft_printf("Error\n"); //only error message that can be printed
+	*stack_a = NULL;
+	*stack_b = NULL;
+	if (ft_parse_args(argc, argv) == 1)
+	{
+		stack_a = ft_makelist(argv, argc, stack_a);
+	}
 	else
 	{
-		if(ft_parse_args(argc, argv) == 1)
-			stack_a = ft_makelist(argv, argc, stack_a);
-		else 
-			ft_printf("Error\n"); //only error message that can be printed
+		ft_printf("Error\n");
+		ft_free_stack(stack_a);
+		ft_free_stack(stack_b);
+		return (0);
 	}
-	/*
-	ft_print_list(stack_a, 'a');
-	ft_print_list(stack_b, 'b');
-	printf("\n");
-	sa(stack_a);
-	ft_print_list(stack_a, 'a');
-	ft_print_list(stack_b, 'b');
-	printf("\n");
-	pb(stack_b, stack_a);
-	ft_print_list(stack_a, 'a');
-	ft_print_list(stack_b, 'b');
-	printf("\n");
-	ra(stack_a);
-	ft_print_list(stack_a, 'a');
-	ft_print_list(stack_b, 'b');
-	printf("\n");
-	*/
-
-printf("\n");
-	pb(stack_b, stack_a);
-	ft_print_list(stack_a, 'a');
-	ft_print_list(stack_b, 'b');
-
-printf("\n");
-	ft_printf("check1\n");
-	pb(stack_b, stack_a);
-	ft_printf("check2\n");
-	ft_print_list(stack_a, 'a');
-	printf("check3\n");
-
-ft_print_list(stack_b, 'b');
-	ft_printf("check4\n");
-	pb(stack_b, stack_a);
-	ft_printf("check4\n");
-	/*
-printf("\n");
-	pb(stack_b, stack_a);
-	ft_print_list(stack_a, 'a');
-	ft_print_list(stack_b, 'b');*/
-
+	ft_print_lists(stack_a, stack_b);
+	rra(stack_a);
+	ft_print_lists(stack_a, stack_b);
+	ft_free_stack(stack_a);
+	ft_free_stack(stack_b);
 }
-//I have to use my own printf
+//to-do BIT SHIFTING, RADIX ALGO w/ INDEX, PARSING, ERROR messages
 
 //RADIX stack A is 1's & stack B is 0's 
 //on check a unit, ten, hundred, etc. 

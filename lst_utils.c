@@ -12,6 +12,27 @@
 
 #include "push_swap.h"
 
+void	ft_print_lists(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*temp;
+
+	temp = *stack_a;
+	ft_printf("a: ");
+	while (temp)
+	{
+		ft_printf("%d ", temp->value);
+		temp = temp->next;
+	}
+	temp = *stack_b;
+	ft_printf("\nb: ");
+	while (temp)
+	{
+		ft_printf("%d ", temp->value);
+		temp = temp->next;
+	}
+	ft_printf("\n");
+}
+
 t_stack	*ft_stack_new(int number)
 {
 	t_stack	*new_node;

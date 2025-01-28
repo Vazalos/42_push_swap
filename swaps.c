@@ -12,17 +12,13 @@
 
 #include "push_swap.h"
 
-/**
- * @brief/param/return
- *
- * */
 void	ft_swap(t_stack **stack)
 {
-	t_stack *first;
-	t_stack *second;
+	t_stack	*first;
+	t_stack	*second;
 	int		temp;
 
-	if(*stack && (*stack)->next)
+	if (*stack && (*stack)->next)
 	{
 		first = *stack;
 		second = first->next;

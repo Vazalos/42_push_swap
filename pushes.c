@@ -14,42 +14,40 @@
 
 void	ft_push(t_stack **dest, t_stack **src) //pa is b to a
 {
-	t_stack *temp;
+	t_stack	*temp;
 
-	if(*src) //added last, did no fix
+	if (*src)
 	{
 		temp = (*src);
-		((*src)->next)->prev = NULL;
-		(*src) = (*src)->next;
-	
-		if(!*dest)
+		if ((*src)->next)
 		{
-			*dest = temp;
-			temp->next = NULL;
+			*src = (*src)->next;
+			(*src)->prev = NULL;
 		}
 		else
+			*src = NULL;
+		if (*dest)
 		{
 			(*dest)->prev = temp;
 			temp->next = (*dest);
 			(*dest) = temp;
+		}
+		else
+		{
+			*dest = temp;
+			temp->next = NULL;
 		}
 	}
 }
 
 void	pa(t_stack **a, t_stack **b)
 {
-	if(*b)
-	{
-		ft_push(a, b);
-		ft_printf("pa\n");
-	}
+	ft_push(a, b);
+	ft_printf("pa\n");
 }
 
 void	pb(t_stack **b, t_stack **a)
 {
-	if(*a)
-	{
-		ft_push(b, a);
-		ft_printf("pb\n");
-	}
+	ft_push(b, a);
+	ft_printf("pb\n");
 }

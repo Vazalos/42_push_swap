@@ -1,51 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotates.c                                          :+:      :+:    :+:   */
+/*   rev_rotates.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: david-fe <david-fe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 17:40:11 by david-fe          #+#    #+#             */
-/*   Updated: 2025/01/23 17:55:35 by david-fe         ###   ########.fr       */
+/*   Created: 2025/01/28 13:24:24 by david-fe          #+#    #+#             */
+/*   Updated: 2025/01/28 13:24:46 by david-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_rotate(t_stack **stack)
+void	ft_rev_rotate(t_stack **stack)
 {
 	t_stack	*to_rotate;
 	t_stack	*temp;
 
 	if (*stack && (*stack)->next)
 	{
-		temp = *stack;
 		to_rotate = *stack;
-		while (temp && temp->next != NULL)
-			temp = temp->next;
-		temp->next = to_rotate;
-		to_rotate->prev = temp;
-		*stack = to_rotate->next;
+		while (to_rotate && to_rotate->next != NULL)
+			to_rotate = to_rotate->next;
+		temp = to_rotate->prev;
+		(*stack)->prev = to_rotate;
+		to_rotate->next = (*stack);
+		*stack = to_rotate;
 		(*stack)->prev = NULL;
-		to_rotate->next = NULL;
+		temp->next = NULL;
 	}
 }
 
-void	ra(t_stack **stack_a)
+void	rra(t_stack **stack_a)
 {
-	ft_rotate(stack_a);
-	ft_printf("ra\n");
+	ft_rev_rotate(stack_a);
+	ft_printf("rra\n");
 }
 
-void	rb(t_stack **stack_b)
+void	rrb(t_stack **stack_b)
 {
-	ft_rotate(stack_b);
-	ft_printf("rb\n");
+	ft_rev_rotate(stack_b);
+	ft_printf("rrb\n");
 }
 
-void	rr(t_stack **stack_a, t_stack **stack_b)
+void	rrr(t_stack **stack_a, t_stack **stack_b)
 {
-	ft_rotate(stack_a);
-	ft_rotate(stack_b);
-	ft_printf("rr\n");
+	ft_rev_rotate(stack_a);
+	ft_rev_rotate(stack_b);
+	ft_printf("rrr\n");
 }

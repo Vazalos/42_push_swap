@@ -12,14 +12,14 @@
 
 CC = cc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 #files
 
 NAME = push_swap.a
 OBJ = $(SRC:.c=.o)
 
-SRC = main.c ft_parse_args.c lst_utils.c swaps.c pushes.c rotates.c
+SRC = main.c ft_parse_args.c lst_utils.c swaps.c pushes.c rotates.c rev_rotates.c
 
 LIBFT = ${LIBFT_PATH}/libft.a
 LIBFT_PATH = libft
