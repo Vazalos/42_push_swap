@@ -18,12 +18,13 @@
 typedef struct s_stack
 {
 	int				value;
+	int				index;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }	t_stack;
 
-int		main(int argc, char **argv);
-int		ft_parse_args(int argc, char **argv);
+int		main(int ncount, char **nlist);
+int		ft_parse_args(int ncount, char **nlist);
 t_stack	**ft_makelist(char **nlist, int nsize, t_stack **stack_a);
 void	ft_print_lists(t_stack **stack_a, t_stack **stack_b);
 //list utils

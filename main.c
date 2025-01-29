@@ -12,6 +12,31 @@
 
 #include "push_swap.h"
 
+void	ft_set_index(t_stack **stack) //
+{
+	t_stack *temp;
+	t_stack *smallest;
+	int	index;
+	int	flag;
+
+	flag = 0;
+	index = 0;
+	temp = *stack;
+	smallest = temp;
+	while (flag == 0)
+	{
+		while (temp && temp->next)
+		{
+			temp = temp->next;
+			if (temp->value < smallest->value)
+				smallest =  temp;
+		}
+		smallest->index = 0;
+		index++;
+	}
+	ft_printf("\nmax value is %d at index %d, min value is %d at index %d\n", smallest->value, smallest->index);
+}
+
 t_stack	**ft_makelist(char **nlist, int nsize, t_stack **stack_a)
 {
 	int		i;
@@ -64,6 +89,8 @@ int	main(int argc, char **argv)
 		ft_free_stack(stack_b);
 		return (0);
 	}
+	ft_set_index(stack_a);
+	//
 	ft_print_lists(stack_a, stack_b);
 	rra(stack_a);
 	ft_print_lists(stack_a, stack_b);

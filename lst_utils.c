@@ -43,6 +43,7 @@ t_stack	*ft_stack_new(int number)
 	new_node->value = number;
 	new_node->next = NULL;
 	new_node->prev = NULL;
+	new_node->index = -1;
 	return (new_node);
 }
 
