@@ -21,20 +21,22 @@ void	ft_set_index(t_stack **stack) //
 
 	flag = 0;
 	index = 0;
-	temp = *stack;
-	smallest = temp;
 	while (flag == 0)
 	{
+		temp = *stack;
+		smallest = temp;
 		while (temp && temp->next)
 		{
 			temp = temp->next;
-			if (temp->value < smallest->value)
+			if (temp->value < smallest->value && temp->index != -1)
 				smallest =  temp;
 		}
-		smallest->index = 0;
+		smallest->index = index;
 		index++;
+		ft_printf("\ncurrent value is %d set to index %d\n", smallest->value, smallest->index);
+		if (index == 4)
+			break;
 	}
-	ft_printf("\nmax value is %d at index %d, min value is %d at index %d\n", smallest->value, smallest->index);
 }
 
 t_stack	**ft_makelist(char **nlist, int nsize, t_stack **stack_a)
