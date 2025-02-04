@@ -12,30 +12,32 @@
 
 #include "push_swap.h"
 
-void	ft_set_index(t_stack **stack) //
+int	ft_set_index(t_stack **stack)
 {
 	t_stack *temp;
 	t_stack *smallest;
+	int	biggest;
 	int	index;
-	int	flag;
 
-	flag = 0;
 	index = 0;
-	while (flag == 0)
+	smallest = NULL;
+	while (1)
 	{
 		temp = *stack;
-		smallest = temp;
-		while (temp && temp->next)
+		if(smallest)
+			biggest = smallest->value;
+		smallest = NULL;
+		while (temp)
 		{
+			if (temp->index == -1 && !smallest)
+				smallest = temp;
+			else if (temp->index == -1 && temp->value < smallest->value)
+				smallest = temp;
 			temp = temp->next;
-			if (temp->value < smallest->value && temp->index != -1)
-				smallest =  temp;
 		}
-		smallest->index = index;
-		index++;
-		ft_printf("\ncurrent value is %d set to index %d\n", smallest->value, smallest->index);
-		if (index == 4)
-			break;
+		if(!smallest)
+			return(biggest);
+		smallest->index = index++;
 	}
 }
 
@@ -91,7 +93,8 @@ int	main(int argc, char **argv)
 		ft_free_stack(stack_b);
 		return (0);
 	}
-	ft_set_index(stack_a);
+	ft_printf("%d\n\n", ft_set_index(stack_a));
+
 	//
 	ft_print_lists(stack_a, stack_b);
 	rra(stack_a);
@@ -99,7 +102,7 @@ int	main(int argc, char **argv)
 	ft_free_stack(stack_a);
 	ft_free_stack(stack_b);
 }
-//to-do BIT SHIFTING, RADIX ALGO w/ INDEX, PARSING, ERROR messages
+//to-do BIT SHIFTING, RADIX ALGO, PARSING, ERROR messages
 
 //RADIX stack A is 1's & stack B is 0's 
 //on check a unit, ten, hundred, etc. 

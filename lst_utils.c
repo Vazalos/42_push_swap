@@ -20,14 +20,14 @@ void	ft_print_lists(t_stack **stack_a, t_stack **stack_b)
 	ft_printf("a: ");
 	while (temp)
 	{
-		ft_printf("%d ", temp->value);
+		ft_printf("%d(%d) ", temp->value, temp->index);
 		temp = temp->next;
 	}
 	temp = *stack_b;
 	ft_printf("\nb: ");
 	while (temp)
 	{
-		ft_printf("%d ", temp->value);
+		ft_printf("%d(%d) ", temp->value, temp->index);
 		temp = temp->next;
 	}
 	ft_printf("\n");
