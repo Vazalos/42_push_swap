@@ -14,17 +14,17 @@
 
 int	ft_set_index(t_stack **stack)
 {
-	t_stack *temp;
-	t_stack *smallest;
-	int	biggest;
-	int	index;
+	t_stack	*temp;
+	t_stack	*smallest;
+	int		biggest;
+	int		index;
 
 	index = 0;
 	smallest = NULL;
 	while (1)
 	{
 		temp = *stack;
-		if(smallest)
+		if (smallest)
 			biggest = smallest->value;
 		smallest = NULL;
 		while (temp)
@@ -35,8 +35,8 @@ int	ft_set_index(t_stack **stack)
 				smallest = temp;
 			temp = temp->next;
 		}
-		if(!smallest)
-			return(biggest);
+		if (!smallest)
+			return (biggest);
 		smallest->index = index++;
 	}
 }
@@ -94,8 +94,6 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	ft_printf("%d\n\n", ft_set_index(stack_a));
-
-	//
 	ft_print_lists(stack_a, stack_b);
 	rra(stack_a);
 	ft_print_lists(stack_a, stack_b);

@@ -12,22 +12,29 @@
 
 #include "push_swap.h"
 
-int	ft_radix_check()
+int	ft_radix_check(void)
+{
+return(1);
+}
 
 void	ft_radix(t_stack **stack_a, t_stack **stack_b, int biggest)
 {
-	int		bit_pos;
-	int		bit;
-	t_stack	*temp;
+	int			bit_pos;
+	int			to_compare;
+	t_stack		*temp;
 
 	bit_pos = 0;
 	temp = *stack_a;
-	while ()
+	while()
 	{
-		if(bit&1)
-			ra(stack_a);
-		else 
-			pb(stack_b, stack_a);
+		while (temp)
+		{
+			if()
+				ra(stack_a);
+			else 
+				pb(stack_b, stack_a);
+			temp = temp->next;
+		}
 	}
 }
 
