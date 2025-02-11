@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-int	ft_set_index(t_stack **stack)
+t_stack	*ft_set_index(t_stack **stack)
 {
 	t_stack	*temp;
 	t_stack	*smallest;
-	int		biggest;
+	t_stack	*biggest;
 	int		index;
 
 	index = 0;
@@ -25,7 +25,7 @@ int	ft_set_index(t_stack **stack)
 	{
 		temp = *stack;
 		if (smallest)
-			biggest = smallest->value;
+			biggest = smallest;
 		smallest = NULL;
 		while (temp)
 		{
@@ -70,37 +70,49 @@ void	ft_free_stack(t_stack **stack)
 			*stack = temp;
 		}
 	}
-	free(stack);
+	if(stack)
+		free(stack);
+}
+
+int ft_free_and_return(t_stack **stack_a, t_stack **stack_b, int is_error)
+{
+	ft_free_stack(stack_a);
+	ft_free_stack(stack_b);
+	if (is_error == 1)
+	{
+		write(2, "Error\n", 6);
+		return(1);
+	}
+	else
+		return(0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	**stack_a;
 	t_stack	**stack_b;
+	t_stack *biggest;
 
 	stack_a = malloc(sizeof(t_stack));
 	stack_b = malloc(sizeof(t_stack));
+	if(!stack_a || !stack_b)
+		return(ft_free_and_return(stack_a, stack_b, 1));
 	*stack_a = NULL;
 	*stack_b = NULL;
-	if (ft_parse_args(argc, argv) == 1)
-	{
+	if (ft_parse_args(argc, argv) == 1 )
 		stack_a = ft_makelist(argv, argc, stack_a);
-	}
 	else
-	{
-		ft_printf("Error\n");
-		ft_free_stack(stack_a);
-		ft_free_stack(stack_b);
-		return (0);
-	}
-	ft_printf("%d\n\n", ft_set_index(stack_a));
+		return(ft_free_and_return(stack_a, stack_b, 1));
+	biggest = ft_set_index(stack_a);
+	if (ft_is_sorted(stack_a) == 1)
+		return(ft_free_and_return(stack_a, stack_b, 0));
+	ft_radix(stack_a, stack_b, biggest);
 	ft_print_lists(stack_a, stack_b);
-	rra(stack_a);
-	ft_print_lists(stack_a, stack_b);
-	ft_free_stack(stack_a);
-	ft_free_stack(stack_b);
+	return(ft_free_and_return(stack_a, stack_b, 0));
 }
-//to-do BIT SHIFTING, RADIX ALGO, PARSING, ERROR messages
+
+//NEGATIVES ERROR OUT
+//to-do BIT SHIFTING, RADIX ALGO, PARSING, ERROR messages, handle 1 and 2-5 numbers
 
 //RADIX stack A is 1's & stack B is 0's 
 //on check a unit, ten, hundred, etc. 
