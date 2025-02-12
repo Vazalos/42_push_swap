@@ -48,6 +48,7 @@ void	rrb(t_stack **stack_b);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
 //radix sort
 void	ft_radix(t_stack **stack_a, t_stack **stack_b, t_stack *biggest);
+void	ft_sort_few(t_stack **stack_a, t_stack **stack_b, t_stack *biggest);
 int		ft_is_sorted(t_stack **stack_a);
 
 #endif
