@@ -25,9 +25,18 @@ typedef struct s_stack
 
 int		main(int ncount, char **nlist);
 int		ft_parse_args(int ncount, char **nlist);
-t_stack	**ft_makelist(char **nlist, int nsize, t_stack **stack_a);
+//radix sort
+void	ft_radix(t_stack **stack_a, t_stack **stack_b, t_stack *biggest);
+void	ft_sort_few(t_stack **stack_a, t_stack **stack_b, t_stack *biggest);
+int		ft_is_sorted(t_stack **stack_a);
+//sort_utils
 void	ft_print_lists(t_stack **stack_a, t_stack **stack_b);
+t_stack	**ft_makelist(char **nlist, int nsize, t_stack **stack_a);
+t_stack	*ft_set_index(t_stack **stack);
+int		ft_max_bits(t_stack *biggest);
+int		ft_is_sorted(t_stack **stack_a);
 //list utils
+int		ft_stack_size(t_stack *head);
 t_stack	*ft_stack_new(int number);
 void	ft_stack_add_back(t_stack **lst, t_stack *new_node);
 void	ft_stack_add_front(t_stack **stack, t_stack *new_node);
@@ -46,9 +55,5 @@ void	rr(t_stack **stack_a, t_stack **stack_b);
 void	rra(t_stack **stack_a);
 void	rrb(t_stack **stack_b);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
-//radix sort
-void	ft_radix(t_stack **stack_a, t_stack **stack_b, t_stack *biggest);
-void	ft_sort_few(t_stack **stack_a, t_stack **stack_b, t_stack *biggest);
-int		ft_is_sorted(t_stack **stack_a);
 
 #endif

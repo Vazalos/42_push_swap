@@ -12,20 +12,6 @@
 
 #include "../push_swap.h"
 
-int	ft_is_sorted(t_stack **stack_a)
-{
-	t_stack	*temp;
-
-	temp = *stack_a;
-	while (temp && temp->next)
-	{
-		if (temp->value > temp->next->value)
-			return (0);
-		temp = temp->next;
-	}
-	return (1);
-}
-
 void	ft_sort_three(t_stack **stack_a, t_stack *biggest)
 {
 	if (biggest->index == (*stack_a)->next->next->index)
@@ -50,17 +36,58 @@ void	ft_sort_three(t_stack **stack_a, t_stack *biggest)
 	}
 }
 
+void	ft_sort_four(t_stack **stack_a, t_stack **stack_b, t_stack *biggest)
+{
+	if ((*stack_a)->index == 0)
+		pb(stack_b, stack_a);
+	else
+	{
+		if ((*stack_a)->next->next->next->index == 0)
+			rra(stack_a);
+		else
+			while ((*stack_a)->index != 0)
+				ra(stack_a);
+		pb(stack_b, stack_a);
+	}
+	ft_sort_three(stack_a, biggest);
+	pa(stack_a, stack_b);
+}
+
+void	ft_sort_five(t_stack **stack_a, t_stack **stack_b, t_stack *biggest)
+{
+	t_stack	*temp;
+
+	temp = (*stack_a)->next->next->next;
+	if ((*stack_a)->index == 1 || (*stack_a)->index == 0)
+		pb(stack_b, stack_a);
+	else
+	{
+		if (temp->index == 1
+			|| temp->next->index == 1)
+		{
+			while ((*stack_a)->index != 1)
+				rra(stack_a);
+		}
+		else
+			while ((*stack_a)->index != 1)
+				ra(stack_a);
+		pb(stack_b, stack_a);
+	}
+	ft_sort_four(stack_a, stack_b, biggest);
+	pa(stack_a, stack_b);
+}
+
 void	ft_sort_few(t_stack **stack_a, t_stack **stack_b, t_stack *biggest)
 {
-	(void)stack_b;
+	if (biggest->index == 1)
+		if ((*stack_a)->index > (*stack_a)->next->index)
+			sa(stack_a);
 	if (biggest->index == 2)
-	{
 		ft_sort_three(stack_a, biggest);
-	}
 	if (biggest->index == 3)
-		ft_printf("4 elements");
+		ft_sort_four(stack_a, stack_b, biggest);
 	if (biggest->index == 4)
-		ft_printf("5 elements");
+		ft_sort_five(stack_a, stack_b, biggest);
 }
 
 void	ft_radix(t_stack **stack_a, t_stack **stack_b, t_stack *biggest)

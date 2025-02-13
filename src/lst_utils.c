@@ -12,25 +12,23 @@
 
 #include "../push_swap.h"
 
-void	ft_print_lists(t_stack **stack_a, t_stack **stack_b)
+int	ft_stack_size(t_stack *head)
 {
-	t_stack	*temp;
+	size_t	n;
+	t_stack	*tmp;
 
-	temp = *stack_a;
-	ft_printf("a: ");
-	while (temp)
+	if (!head)
+		return (0);
+	n = 0;
+	tmp = head;
+	while (tmp && tmp->next != NULL)
 	{
-		ft_printf("%d(%d) ", temp->value, temp->index);
-		temp = temp->next;
+		tmp = tmp->next;
+		n++;
 	}
-	temp = *stack_b;
-	ft_printf("\nb: ");
-	while (temp)
-	{
-		ft_printf("%d(%d) ", temp->value, temp->index);
-		temp = temp->next;
-	}
-	ft_printf("\n");
+	if (tmp)
+		n++;
+	return (n);
 }
 
 t_stack	*ft_stack_new(int number)

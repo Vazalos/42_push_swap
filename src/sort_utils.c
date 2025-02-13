@@ -17,7 +17,7 @@ void	ft_print_lists(t_stack **stack_a, t_stack **stack_b)
 	t_stack	*temp;
 
 	temp = *stack_a;
-	ft_printf("a: ");
+	ft_printf("\na: ");
 	while (temp)
 	{
 		ft_printf("%d(%d) ", temp->value, temp->index);
@@ -30,7 +30,7 @@ void	ft_print_lists(t_stack **stack_a, t_stack **stack_b)
 		ft_printf("%d(%d) ", temp->value, temp->index);
 		temp = temp->next;
 	}
-	ft_printf("\n");
+	ft_printf("\n\n");
 }
 
 t_stack	**ft_makelist(char **nlist, int nsize, t_stack **stack_a)
@@ -75,6 +75,20 @@ t_stack	*ft_set_index(t_stack **stack)
 			return (biggest);
 		smallest->index = index++;
 	}
+}
+
+int	ft_is_sorted(t_stack **stack_a)
+{
+	t_stack	*temp;
+
+	temp = *stack_a;
+	while (temp && temp->next)
+	{
+		if (temp->value > temp->next->value)
+			return (0);
+		temp = temp->next;
+	}
+	return (1);
 }
 
 int	ft_max_bits(t_stack *biggest)

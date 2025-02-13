@@ -21,7 +21,7 @@ OBJ = $(SRC:.c=.o)
 
 SRC = ${SRC_PATH}/main.c ${SRC_PATH}/ft_parse_args.c ${SRC_PATH}/lst_utils.c \
 	  ${SRC_PATH}/swaps.c ${SRC_PATH}/pushes.c ${SRC_PATH}/rotates.c \
-	  ${SRC_PATH}/rev_rotates.c ${SRC_PATH}/radix_sort.c
+	  ${SRC_PATH}/rev_rotates.c ${SRC_PATH}/radix_sort.c ${SRC_PATH}/sort_utils.c
 SRC_PATH = src
 
 LIBFT = ${LIBFT_PATH}/libft.a
@@ -46,5 +46,13 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+n:
+#	norminette push_swap.h ${SRC_PATH} ${LIBFT_PATH}
+	@norminette ${LIBFT_PATH} 
+	@echo -e '\n'
+	@norminette ${SRC_PATH}
+	@echo -e '\n'
+	@norminette push_swap.h
 
 .PHONY: all clean fclean re
