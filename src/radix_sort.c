@@ -36,16 +36,19 @@ void	ft_sort_three(t_stack **stack_a, t_stack *biggest)
 	}
 }
 
-void	ft_sort_four(t_stack **stack_a, t_stack **stack_b, t_stack *biggest)
+void	ft_sort_four(t_stack **stack_a, t_stack **stack_b, t_stack *biggest,
+	int pb_index)
 {
-	if ((*stack_a)->index == 0)
+	if ((*stack_a)->index == 0 || ((*stack_a)->index == 1 && pb_index == 0))
 		pb(stack_b, stack_a);
 	else
 	{
-		if ((*stack_a)->next->next->next->index == 0)
+		if ((*stack_a)->next->next->next->index == 0
+			|| ((*stack_a)->next->next->next->index == 1 && pb_index == 0))
 			rra(stack_a);
 		else
-			while ((*stack_a)->index != 0)
+			while ((*stack_a)->index != 0
+				&& ((*stack_a)->index != 1 && pb_index == 0))
 				ra(stack_a);
 		pb(stack_b, stack_a);
 	}
@@ -56,25 +59,30 @@ void	ft_sort_four(t_stack **stack_a, t_stack **stack_b, t_stack *biggest)
 void	ft_sort_five(t_stack **stack_a, t_stack **stack_b, t_stack *biggest)
 {
 	t_stack	*temp;
+	int		pb_index;
 
-	temp = (*stack_a)->next->next->next;
 	if ((*stack_a)->index == 1 || (*stack_a)->index == 0)
-		pb(stack_b, stack_a);
-	else
 	{
-		if (temp->index == 1
-			|| temp->next->index == 1)
-		{
-			while ((*stack_a)->index != 1)
-				rra(stack_a);
-		}
-		else
-			while ((*stack_a)->index != 1)
-				ra(stack_a);
+		pb_index = (*stack_a)->index;
 		pb(stack_b, stack_a);
 	}
-	ft_sort_four(stack_a, stack_b, biggest);
+	else
+	{
+		temp = (*stack_a)->next->next->next;
+		if (temp->index == 1 || temp->next->index == 1
+			|| temp->index == 0 || temp->next->index == 0)
+			while ((*stack_a)->index != 1 && (*stack_a)->index != 0)
+				rra(stack_a);
+		else
+			while ((*stack_a)->index != 1 && (*stack_a)->index != 0)
+				ra(stack_a);
+		pb_index = (*stack_a)->index;
+		pb(stack_b, stack_a);
+	}
+	ft_sort_four(stack_a, stack_b, biggest, pb_index);
 	pa(stack_a, stack_b);
+	if ((*stack_a)->index > (*stack_a)->next->index)
+		sa(stack_a);
 }
 
 void	ft_sort_few(t_stack **stack_a, t_stack **stack_b, t_stack *biggest)
@@ -85,7 +93,7 @@ void	ft_sort_few(t_stack **stack_a, t_stack **stack_b, t_stack *biggest)
 	if (biggest->index == 2)
 		ft_sort_three(stack_a, biggest);
 	if (biggest->index == 3)
-		ft_sort_four(stack_a, stack_b, biggest);
+		ft_sort_four(stack_a, stack_b, biggest, 1);
 	if (biggest->index == 4)
 		ft_sort_five(stack_a, stack_b, biggest);
 }
@@ -114,14 +122,3 @@ void	ft_radix(t_stack **stack_a, t_stack **stack_b, t_stack *biggest)
 		bit_pos++;
 	}
 }
-
-//to-do BIT SHIFTING, RADIX ALGO, PARSING, ERROR messages
-
-//RADIX stack A is 1's & stack B is 0's 
-//on check a unit, ten, hundred, etc. 
-//you have 3 moves only: RA, PA, PB
-// -> 1's are to receive a RA
-// -> 0's are to receive a PB
-// after all iterations on that digit place, PA all in stack B
-// repeat while going up from units until the biggest digit place that exists
-//after that all is sorted

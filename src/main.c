@@ -62,7 +62,6 @@ int	main(int argc, char **argv)
 	biggest = ft_set_index(stack_a);
 	if (ft_is_sorted(stack_a) == 1)
 		return (ft_free_and_return(stack_a, stack_b, 0));
-	ft_print_lists(stack_a, stack_b);
 	if (argc <= 6)
 		ft_sort_few(stack_a, stack_b, biggest);
 	else
@@ -71,7 +70,6 @@ int	main(int argc, char **argv)
 	return (ft_free_and_return(stack_a, stack_b, 0));
 }
 
-//NEGATIVES ERROR OUT
 //to-do handle 1 and 2-5 numbers, handle PARSING for negatives
 //proper NUM check and split
 

@@ -37,7 +37,7 @@ int	ft_digitchr(int argc, char **argv) // handle args like "2 2" 2
 		if ((ft_isdigit(argv[i][++j]) == 1 && argv[i][j]) ||
 			(j == 0 && (argv[i][j] == '+' || argv[i][j] == '-')))
 		{
-			if (j > 10 || ft_atol(argv[i]) > INT_MAX
+			if (j > 11 || ft_atol(argv[i]) > INT_MAX
 				|| ft_atol(argv[i]) < INT_MIN)
 				return (0);
 		}

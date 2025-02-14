@@ -53,9 +53,8 @@ t_stack	*ft_set_index(t_stack **stack)
 	t_stack	*temp;
 	t_stack	*smallest;
 	t_stack	*biggest;
-	int		index;
+	static int		index;
 
-	index = 0;
 	smallest = NULL;
 	while (1)
 	{
@@ -67,6 +66,8 @@ t_stack	*ft_set_index(t_stack **stack)
 		{
 			if (temp->index == -1 && !smallest)
 				smallest = temp;
+			//else if (temp->value == smallest->value)
+			//	return(NULL);
 			else if (temp->index == -1 && temp->value < smallest->value)
 				smallest = temp;
 			temp = temp->next;
