@@ -43,11 +43,22 @@ int	ft_free_and_return(t_stack **stack_a, t_stack **stack_b, int is_error)
 		return (0);
 }
 
+void	ft_sort_algo(t_stack **stack_a, t_stack **stack_b, 
+				  t_stack *biggest, int argc)
+{
+	if (argc <= 6)
+		ft_sort_few(stack_a, stack_b, biggest);
+	else
+		ft_radix(stack_a, stack_b, biggest);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	**stack_a;
 	t_stack	**stack_b;
 	t_stack	*biggest;
+	int		argnum;
+	char	**argval;
 
 	stack_a = malloc(sizeof(t_stack));
 	stack_b = malloc(sizeof(t_stack));
@@ -62,13 +73,11 @@ int	main(int argc, char **argv)
 	biggest = ft_set_index(stack_a);
 	if (ft_is_sorted(stack_a) == 1)
 		return (ft_free_and_return(stack_a, stack_b, 0));
-	if (argc <= 6)
-		ft_sort_few(stack_a, stack_b, biggest);
-	else
-		ft_radix(stack_a, stack_b, biggest);
-	ft_print_lists(stack_a, stack_b);
+	ft_sort_algo(stack_a, stack_b, biggest, argc);
+	ft_print_lists(stack_a, stack_b); //*						 */DELETE
 	return (ft_free_and_return(stack_a, stack_b, 0));
 }
+//	ft_print_lists(stack_a, stack_b);
 
 //to-do handle 1 and 2-5 numbers, handle PARSING for negatives
 //proper NUM check and split

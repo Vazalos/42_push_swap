@@ -20,8 +20,8 @@ int	ft_arg_split(int argc, char **argv)
 
 	i = 0;
 	arglist = NULL;
-	if (ft_strchr(argv[1], 32) && argc == 2)
-		arglist = ft_split(argv[1], 32);
+	if (ft_strchr(argv[1], ' ') && argc == 2)
+		arglist = ft_split(argv[1], ' ');
 	return (1);
 }
 

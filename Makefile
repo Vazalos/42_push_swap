@@ -11,13 +11,14 @@
 # **************************************************************************** #
 
 CC = cc
-RM = rm -f
+RM = rm -rf
 CFLAGS = -Wall -Wextra -Werror -g
 
 #files
 
 NAME = push_swap.a
-OBJ = $(SRC:.c=.o)
+OBJ = $(addprefix $(OBJ_PATH)/, $(notdir $(SRC:.c=.o)))
+OBJ_PATH = .obj
 
 SRC = ${SRC_PATH}/main.c ${SRC_PATH}/ft_parse_args.c ${SRC_PATH}/lst_utils.c \
 	  ${SRC_PATH}/swaps.c ${SRC_PATH}/pushes.c ${SRC_PATH}/rotates.c \
@@ -29,7 +30,7 @@ LIBFT_PATH = libft
 
 #rules
 
-all: $(NAME) 
+all: $(OBJ_PATH) $(NAME) 
 
 $(NAME): $(OBJ)
 	make -C ${LIBFT_PATH} all
@@ -37,9 +38,15 @@ $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 	cc ${CFLAGS} ${NAME} ${OBJS} -o push_swap
 
+$(OBJ_PATH):
+	mkdir $(OBJ_PATH)
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+	$(CC) $(CC_FLAGS) -I/usr/include -c $< -o $@
+
 clean:
 	make -C ${LIBFT_PATH} clean
-	$(RM) $(OBJ) 
+	$(RM) $(OBJ) $(OBJ_PATH) 
 
 fclean: clean
 	make -C ${LIBFT_PATH} fclean
