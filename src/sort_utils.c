@@ -33,12 +33,12 @@ void	ft_print_lists(t_stack **stack_a, t_stack **stack_b)
 	ft_printf("\n\n");
 }
 
-t_stack	**ft_makelist(char **nlist, int nsize, t_stack **stack_a)
+t_stack	**ft_makelist(char **nlist, int nsize, t_stack **stack_a, int s)
 {
 	int		i;
 	t_stack	*current;
 
-	i = 1;
+	i = s;
 	current = NULL;
 	while (i < nsize && nlist[i])
 	{
@@ -50,10 +50,10 @@ t_stack	**ft_makelist(char **nlist, int nsize, t_stack **stack_a)
 
 t_stack	*ft_set_index(t_stack **stack)
 {
-	t_stack	*temp;
-	t_stack	*smallest;
-	t_stack	*biggest;
-	static int		index;
+	t_stack		*temp;
+	t_stack		*smallest;
+	t_stack		*biggest;
+	static int	index;
 
 	smallest = NULL;
 	while (1)
@@ -66,8 +66,6 @@ t_stack	*ft_set_index(t_stack **stack)
 		{
 			if (temp->index == -1 && !smallest)
 				smallest = temp;
-			//else if (temp->value == smallest->value)
-			//	return(NULL);
 			else if (temp->index == -1 && temp->value < smallest->value)
 				smallest = temp;
 			temp = temp->next;

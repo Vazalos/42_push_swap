@@ -22,7 +22,8 @@ OBJ_PATH = .obj
 
 SRC = ${SRC_PATH}/main.c ${SRC_PATH}/ft_parse_args.c ${SRC_PATH}/lst_utils.c \
 	  ${SRC_PATH}/swaps.c ${SRC_PATH}/pushes.c ${SRC_PATH}/rotates.c \
-	  ${SRC_PATH}/rev_rotates.c ${SRC_PATH}/radix_sort.c ${SRC_PATH}/sort_utils.c
+	  ${SRC_PATH}/rev_rotates.c ${SRC_PATH}/radix_sort.c ${SRC_PATH}/sort_utils.c \
+	  ${SRC_PATH}/frees.c
 SRC_PATH = src
 
 LIBFT = ${LIBFT_PATH}/libft.a
@@ -36,7 +37,7 @@ $(NAME): $(OBJ)
 	make -C ${LIBFT_PATH} all
 	cp ${LIBFT} ${NAME}
 	ar rcs $(NAME) $(OBJ)
-	cc ${CFLAGS} ${NAME} ${OBJS} -o push_swap
+	cc ${CFLAGS} -g ${NAME} ${OBJS} -o push_swap
 
 $(OBJ_PATH):
 	mkdir $(OBJ_PATH)

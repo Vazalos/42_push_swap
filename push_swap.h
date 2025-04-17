@@ -15,6 +15,9 @@
 # include <stdio.h>
 # include "libft/libft.h"
 
+# define MAX 2147483647
+# define MIN -2147483648
+
 typedef struct s_stack
 {
 	int				value;
@@ -24,14 +27,20 @@ typedef struct s_stack
 }	t_stack;
 
 int		main(int ncount, char **nlist);
-int		ft_parse_args(int ncount, char **nlist);
+int		ft_parse_args(int argc, char **argv, t_stack **stack_a);
+
+//frees
+void	ft_free_stack(t_stack **stack);
+int		ft_free_and_return(t_stack **stack_a, t_stack **stack_b, int is_error);
+void	ft_free_arglist(char **arglist);
+
 //radix sort
 void	ft_radix(t_stack **stack_a, t_stack **stack_b, t_stack *biggest);
 void	ft_sort_few(t_stack **stack_a, t_stack **stack_b, t_stack *biggest);
 int		ft_is_sorted(t_stack **stack_a);
 //sort_utils
 void	ft_print_lists(t_stack **stack_a, t_stack **stack_b);
-t_stack	**ft_makelist(char **nlist, int nsize, t_stack **stack_a);
+t_stack	**ft_makelist(char **nlist, int nsize, t_stack **stack_a, int s);
 t_stack	*ft_set_index(t_stack **stack);
 int		ft_max_bits(t_stack *biggest);
 int		ft_is_sorted(t_stack **stack_a);

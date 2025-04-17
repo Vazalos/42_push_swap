@@ -14,23 +14,26 @@
 
 void	ft_sort_three(t_stack **stack_a, t_stack *biggest)
 {
-	if (biggest->index == (*stack_a)->next->next->index)
-		sa(stack_a);
-	else
+	if(ft_is_sorted(stack_a) == 0)
 	{
-		if (biggest->index == (*stack_a)->index)
-		{
-			ra(stack_a);
-			if ((*stack_a)->index > (*stack_a)->next->index)
-				sa(stack_a);
-		}
+		if (biggest->index == (*stack_a)->next->next->index)
+			sa(stack_a);
 		else
 		{
-			if (biggest->index == (*stack_a)->next->index)
+			if (biggest->index == (*stack_a)->index)
 			{
-				rra(stack_a);
+				ra(stack_a);
 				if ((*stack_a)->index > (*stack_a)->next->index)
 					sa(stack_a);
+			}
+			else
+			{
+				if (biggest->index == (*stack_a)->next->index)
+				{
+					rra(stack_a);
+					if ((*stack_a)->index > (*stack_a)->next->index)
+						sa(stack_a);
+				}
 			}
 		}
 	}
@@ -47,10 +50,11 @@ void	ft_sort_four(t_stack **stack_a, t_stack **stack_b, t_stack *biggest,
 			|| ((*stack_a)->next->next->next->index == 1 && pb_index == 0))
 			rra(stack_a);
 		else
-			while ((*stack_a)->index != 0
-				&& ((*stack_a)->index != 1 && pb_index == 0))
+			while (!((*stack_a)->index == 0
+					|| ((*stack_a)->index == 1 && pb_index == 0)))
 				ra(stack_a);
-		pb(stack_b, stack_a);
+		if(ft_is_sorted(stack_a) == 0)
+			pb(stack_b, stack_a);
 	}
 	ft_sort_three(stack_a, biggest);
 	pa(stack_a, stack_b);
