@@ -44,8 +44,8 @@ int	ft_is_arg_duplicated(int argc, char **argv, int s)
 		k = i + 1;
 		while (argv[k])
 		{
-			if (ft_atol(argv[i]) == ft_atol(argv[k]) 
-			|| ft_strlen(argv[i]) == 0 || ft_strlen(argv[k]) == 0) 
+			if (ft_atol(argv[i]) == ft_atol(argv[k])
+				|| ft_strlen(argv[i]) == 0 || ft_strlen(argv[k]) == 0)
 				return (0);
 			k++;
 		}

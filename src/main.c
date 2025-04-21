@@ -50,7 +50,6 @@ int	main(int argc, char **argv)
 	if (ft_is_sorted(stack_a) == 1)
 		return (ft_free_and_return(stack_a, stack_b, 0));
 	ft_sort_algo(stack_a, stack_b, biggest, argnum);
-	//ft_print_lists(stack_a, stack_b); // use before last return
 	return (ft_free_and_return(stack_a, stack_b, 0));
 }
 //	ft_print_lists(stack_a, stack_b); // use before last return

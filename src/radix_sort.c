@@ -14,7 +14,7 @@
 
 void	ft_sort_three(t_stack **stack_a, t_stack *biggest)
 {
-	if(ft_is_sorted(stack_a) == 0)
+	if (ft_is_sorted(stack_a) == 0)
 	{
 		if (biggest->index == (*stack_a)->next->next->index)
 			sa(stack_a);
@@ -53,7 +53,7 @@ void	ft_sort_four(t_stack **stack_a, t_stack **stack_b, t_stack *biggest,
 			while (!((*stack_a)->index == 0
 					|| ((*stack_a)->index == 1 && pb_index == 0)))
 				ra(stack_a);
-		if(ft_is_sorted(stack_a) == 0)
+		if (ft_is_sorted(stack_a) == 0)
 			pb(stack_b, stack_a);
 	}
 	ft_sort_three(stack_a, biggest);
