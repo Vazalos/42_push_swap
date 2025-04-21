@@ -12,15 +12,6 @@
 
 #include "../push_swap.h"
 
-void	ft_sort_algo(t_stack **stack_a, t_stack **stack_b,
-				t_stack *biggest, int argc)
-{
-	if (argc <= 6)
-		ft_sort_few(stack_a, stack_b, biggest);
-	else
-		ft_radix(stack_a, stack_b, biggest);
-}
-
 int	ft_alloc_check(t_stack **stack_a, t_stack **stack_b)
 {
 	if (!stack_a || !stack_b)
@@ -49,7 +40,10 @@ int	main(int argc, char **argv)
 	biggest = ft_set_index(stack_a);
 	if (ft_is_sorted(stack_a) == 1)
 		return (ft_free_and_return(stack_a, stack_b, 0));
-	ft_sort_algo(stack_a, stack_b, biggest, argnum);
+	if (argnum < 6)
+		ft_sort_few(stack_a, stack_b, biggest);
+	else
+		ft_radix(stack_a, stack_b, biggest);
 	return (ft_free_and_return(stack_a, stack_b, 0));
 }
 //	ft_print_lists(stack_a, stack_b); // use before last return

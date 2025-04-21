@@ -71,7 +71,7 @@ int	ft_digitchr(int argc, char **argv, int s)
 				(j == 0 && (argv[i][j] == '+' || argv[i][j] == '-') &&
 				(argv[i][j + 1]) && (ft_isdigit(argv[i][j + 1]) == 1))))
 				return (0);
-			else if (j > 11 || ft_atol(argv[i]) > MAX || ft_atol(argv[i]) < MIN)
+			else if (ft_atol(argv[i]) > MAX || ft_atol(argv[i]) < MIN)
 				return (0);
 			j++;
 		}
@@ -119,7 +119,7 @@ int	ft_parse_args(int argc, char **argv, t_stack **stack_a)
 		if (ft_digitchr(argc, argv, 1) == 0)
 			return (0);
 		stack_a = ft_makelist(argv, argc, stack_a, 1);
-		return (argc);
+		return (argc - 1);
 	}
 	else
 		return (0);
